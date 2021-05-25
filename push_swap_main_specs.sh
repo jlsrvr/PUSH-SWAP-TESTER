@@ -1,3 +1,4 @@
+PATH_TO_PUSH_SWAP=../push_swap/srcs/
 RED="\033[31m"
 GREEN="\033[32m"
 PINK="\033[35m"
@@ -31,7 +32,7 @@ test () {
 	fi
 	printf "\n${BOLD}${describe} :\n${RESET}"
 	if [ $max_actions ]; then
-		actions_count=`../srcs/push_swap $stack | wc -l | xargs`
+		actions_count=`${PATH_TO_PUSH_SWAP}push_swap $stack | wc -l | xargs`
 		if [ $actions_count -le $max_actions ]; then
 			speed_info="${UNDER}Fast${RESET} "
 		else
@@ -40,9 +41,9 @@ test () {
 		fi
 	fi
 	if [ $scenario == 'E' ]; then
-		../srcs/push_swap $stack > outputs/ps_${test_number}_test_output
+		${PATH_TO_PUSH_SWAP}push_swap $stack > outputs/ps_${test_number}_test_output
 	else
-		../srcs/push_swap $stack | ../srcs/checker $stack > outputs/ps_${test_number}_test_output
+		${PATH_TO_PUSH_SWAP}push_swap $stack | ./checker $stack > outputs/ps_${test_number}_test_output
 	fi
 	if [ $speed_info ]; then
 		printf "${speed_info}" >> outputs/ps_${test_number}_test_output
@@ -68,7 +69,7 @@ test () {
 
 clear
 printf "${BOLD}${CYAN}<==== Compiling project ====>\n\n${RESET}"
-make -C ../srcs
+make push_swap -C ${PATH_TO_PUSH_SWAP}
 compilation=$?
 if [ ${compilation} -ne 0 ]; then
 	exit 1
@@ -126,9 +127,9 @@ done
 
 if [ $clean ]; then
 	if [ $clean = "clean" ]; then
-		make clean -C ../srcs
+		make clean -C ${PATH_TO_PUSH_SWAP}
 	elif [ $clean = "fclean" ]; then
-		make fclean -C ../srcs
+		make fclean -C ${PATH_TO_PUSH_SWAP}
 	else
 		printf "Not an option"
 	fi
