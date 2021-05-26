@@ -5,7 +5,7 @@
 ###################################
 
 #Edit the next line with the path of your push_swap project.
-PATH_TO_PUSH_SWAP=../push_swap/srcs
+PATH_TO_PUSH_SWAP=REPLACE_THIS_WITH_THE_CORRECT_PATH
 
 #If you use a relative path, don't put double quotes.
 #For example :
