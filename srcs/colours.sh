@@ -1,0 +1,9 @@
+#./bin/bash
+RED="\033[31m"
+GREEN="\033[32m"
+PINK="\033[35m"
+CYAN="\033[36m"
+BOLD="\033[1m"
+UNDER="\033[4m"
+BLINK="\033[5m"
+RESET="\033[m"
