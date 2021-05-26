@@ -2,6 +2,15 @@
 PATH_TEST="$(cd "$(dirname "$0")" && pwd -P)"
 
 source ${PATH_TEST}/colours.sh
+system=`uname`
+if [ $system == "Linux" ]; then
+	checker=linux_checker
+elif [ $system == "Darwin" ]; then
+	checker=mac_checker
+else
+	printf "${RED}Sorry not compatible with operating system"
+	exit
+fi
 
 if [ ! -e ${PATH_TEST}/../my_config.sh ]; then
 	printf "${BOLD}my_config.sh${RESET} file not found.\n"
@@ -51,7 +60,7 @@ average () {
 			stack=`ruby -e 'puts (-100..1000).to_a.sample(500).join(" ")'`
 		fi
 		iteration_count=`${PATH_TO_PUSH_SWAP}/push_swap $stack | wc -l | xargs`
-		result=`${PATH_TO_PUSH_SWAP}/push_swap $stack | ${PATH_TEST}/checker $stack`
+		result=`${PATH_TO_PUSH_SWAP}/push_swap $stack | ${PATH_TEST}/${checker} $stack`
 		if [[ $result == *"KO"* ]] || [[ $result == *"Error"* ]]; then
 			echo $stack >> outputs/checker_result_for_average
 		fi
@@ -101,7 +110,7 @@ test () {
 				echo $stack
 			fi
 		fi
-		${PATH_TO_PUSH_SWAP}/push_swap $stack | ${PATH_TEST}/checker $stack > outputs/ps_${test_number}_test_output
+		${PATH_TO_PUSH_SWAP}/push_swap $stack | ${PATH_TEST}/${checker} $stack > outputs/ps_${test_number}_test_output
 	fi
 	if [ $speed_info ]; then
 		printf "${speed_info}\n" >> outputs/ps_${test_number}_test_output
