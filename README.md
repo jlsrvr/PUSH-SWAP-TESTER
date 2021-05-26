@@ -1,6 +1,6 @@
 # **Push-swap tester**
 
-This is a simple but efficient tester for the 42 push-swap project.
+This is a simple but efficient tester for the 42 push-swap project. It helped me get 4/5 on both 100 and 500 size stacks.
 
 The project asks the student to write a program that can sort a given stack with the _least_ number of actions possible.
 
@@ -28,3 +28,7 @@ At the root of the tester run this command in your terminal:<br/>`ruby srcs/stac
 
 Follow the on screen prompts.
 
+
+
+All feedback welcome!
+Don't hesitate to create an issue or contact me on slack at jrivoire.
